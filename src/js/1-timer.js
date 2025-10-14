@@ -6,7 +6,6 @@ import "izitoast/dist/css/iziToast.min.css";
 const calendar = document.querySelector('input[type="text"]');
 const startBtn = document.querySelector("button[data-start]")
 startBtn.disabled = true;
-calendar.addEventListener('input', flatpickr);
 
 let userSelectedDate = Date.now();
 
@@ -119,21 +118,8 @@ const timer = new Timer({
 startBtn.addEventListener("click", timer.start.bind(timer));
 
 function updateClockface({ days, hours, minutes, seconds }) {
-    const valueElement = document.querySelectorAll('.value');
-    valueElement.forEach(elem => {
-            if (elem.dataset.days !== undefined) {
-                elem.dataset.days = days;
-                elem.textContent = elem.dataset.days;
-            } else if (elem.dataset.hours !== undefined) {
-                elem.dataset.hours = hours;
-                elem.textContent = elem.dataset.hours;
-            } else if (elem.dataset.minutes !== undefined) {
-                elem.dataset.minutes = minutes;
-                elem.textContent = elem.dataset.minutes;
-            } else if (elem.dataset.seconds !== undefined) {
-                elem.dataset.seconds = seconds;
-                elem.textContent = elem.dataset.seconds;
-            }
-        })
+    document.querySelector('.value[data-days]').textContent = days;
+    document.querySelector('.value[data-hours]').textContent = hours;
+    document.querySelector('.value[data-minutes]').textContent = minutes;
+    document.querySelector('.value[data-seconds]').textContent = seconds;
 }
-
